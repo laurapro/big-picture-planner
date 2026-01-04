@@ -19,10 +19,11 @@ const saveEvents = (events: CalendarEvent[]) => {
 export const useCalendarEvents = () => {
   const [events, setEvents] = useState<CalendarEvent[]>(loadEvents);
 
-  const addEvent = useCallback((date: string, title: string, color: PostItColor) => {
+  const addEvent = useCallback((startDate: string, endDate: string, title: string, color: PostItColor) => {
     const newEvent: CalendarEvent = {
       id: crypto.randomUUID(),
-      date,
+      startDate,
+      endDate,
       title,
       color,
     };
@@ -41,10 +42,13 @@ export const useCalendarEvents = () => {
     });
   }, []);
 
-  const getEventsForDate = useCallback(
-    (date: string) => events.filter((e) => e.date === date),
-    [events]
-  );
+  const updateEvent = useCallback((id: string, updates: Partial<Omit<CalendarEvent, 'id'>>) => {
+    setEvents((prev) => {
+      const updated = prev.map((e) => (e.id === id ? { ...e, ...updates } : e));
+      saveEvents(updated);
+      return updated;
+    });
+  }, []);
 
-  return { events, addEvent, removeEvent, getEventsForDate };
+  return { events, addEvent, removeEvent, updateEvent };
 };
