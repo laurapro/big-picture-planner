@@ -46,7 +46,7 @@ export const TodoList = ({
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a task..."
-          className="flex-1 h-11 font-handwritten text-lg"
+          className="flex-1 h-11 text-base"
         />
         <Button type="submit" size="icon" className="h-11 w-11" disabled={!newTodo.trim()}>
           <Plus className="h-5 w-5" />
@@ -54,7 +54,7 @@ export const TodoList = ({
       </form>
 
       {todos.length === 0 ? (
-        <p className="text-center text-muted-foreground py-8 font-handwritten text-lg">
+        <p className="text-center text-muted-foreground py-8 text-base">
           No tasks yet. Add one above!
         </p>
       ) : (
@@ -80,7 +80,7 @@ export const TodoList = ({
               </button>
               <span
                 className={cn(
-                  'flex-1 font-handwritten text-lg transition-all',
+                  'flex-1 text-base transition-all',
                   todo.completed && 'line-through text-muted-foreground'
                 )}
               >

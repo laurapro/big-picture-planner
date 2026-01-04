@@ -166,7 +166,7 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick }: Horizontal
                         }}
                         title={block.event.title}
                       >
-                        <span className="font-handwritten text-xs md:text-sm font-bold text-foreground/90 truncate whitespace-nowrap">
+                        <span className="text-xs md:text-sm font-semibold text-foreground/90 truncate whitespace-nowrap">
                           {block.event.title}
                         </span>
                       </div>
