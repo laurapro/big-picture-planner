@@ -1,8 +1,9 @@
-export type PostItColor = 'yellow' | 'pink' | 'blue' | 'green' | 'orange' | 'purple';
+export type PostItColor = 'yellow' | 'pink' | 'blue' | 'green' | 'orange' | 'purple' | 'red';
 
 export interface CalendarEvent {
   id: string;
-  date: string; // YYYY-MM-DD format
+  startDate: string; // YYYY-MM-DD format
+  endDate: string;   // YYYY-MM-DD format
   title: string;
   color: PostItColor;
 }

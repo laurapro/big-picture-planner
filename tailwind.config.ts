@@ -15,7 +15,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['DM Sans', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        title: ['Bangers', 'cursive'],
+        handwritten: ['Caveat', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -58,6 +59,13 @@ export default {
           green: "hsl(var(--postit-green))",
           orange: "hsl(var(--postit-orange))",
           purple: "hsl(var(--postit-purple))",
+          red: "hsl(var(--postit-red))",
+        },
+        calendar: {
+          header: "hsl(var(--calendar-header))",
+          weekend: "hsl(var(--calendar-weekend))",
+          weekday: "hsl(var(--calendar-weekday))",
+          border: "hsl(var(--calendar-grid-border))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -1,54 +1,54 @@
 import { useState, useMemo } from 'react';
-import { YearHeader } from './YearHeader';
-import { MonthGrid } from './MonthGrid';
+import { CalendarHeader } from './CalendarHeader';
+import { HorizontalCalendarGrid } from './HorizontalCalendarGrid';
 import { AddEventDialog } from './AddEventDialog';
 import { TodoList } from './TodoList';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 import { useTodoList } from '@/hooks/useTodoList';
-
-const MONTHS = Array.from({ length: 12 }, (_, i) => i);
 
 export const BigAssCalendar = () => {
   const [year, setYear] = useState(() => new Date().getFullYear());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { events, addEvent, removeEvent, getEventsForDate } = useCalendarEvents();
+  const { events, addEvent, removeEvent } = useCalendarEvents();
   const { todos, addTodo, toggleTodo, removeTodo } = useTodoList();
 
-  const handleDateClick = (date: string) => {
+  const handleCellClick = (date: string) => {
     setSelectedDate(date);
     setDialogOpen(true);
   };
 
-  const existingEventsForSelected = useMemo(
-    () => (selectedDate ? getEventsForDate(selectedDate) : []),
-    [selectedDate, getEventsForDate]
-  );
+  const yearEvents = useMemo(() => {
+    return events.filter((e) => {
+      const startYear = parseInt(e.startDate.split('-')[0]);
+      const endYear = parseInt(e.endDate.split('-')[0]);
+      return startYear === year || endYear === year;
+    });
+  }, [events, year]);
+
+  const existingEventsForSelected = useMemo(() => {
+    if (!selectedDate) return [];
+    return events.filter((e) => {
+      return e.startDate <= selectedDate && e.endDate >= selectedDate;
+    });
+  }, [selectedDate, events]);
 
   return (
-    <div className="min-h-screen bg-background px-4 pb-12">
-      <YearHeader
+    <div className="min-h-screen bg-background px-2 sm:px-4 pb-12">
+      <CalendarHeader
         year={year}
         onPrevYear={() => setYear((y) => y - 1)}
         onNextYear={() => setYear((y) => y + 1)}
       />
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 mb-12">
-          {MONTHS.map((month) => (
-            <MonthGrid
-              key={month}
-              year={year}
-              month={month}
-              events={events.filter((e) => {
-                const eventYear = parseInt(e.date.split('-')[0]);
-                const eventMonth = parseInt(e.date.split('-')[1]) - 1;
-                return eventYear === year && eventMonth === month;
-              })}
-              onDateClick={handleDateClick}
-            />
-          ))}
+      <div className="max-w-[1600px] mx-auto">
+        <div className="bg-card rounded-xl shadow-card p-2 sm:p-4 mb-8">
+          <HorizontalCalendarGrid
+            year={year}
+            events={yearEvents}
+            onCellClick={handleCellClick}
+          />
         </div>
 
         <TodoList

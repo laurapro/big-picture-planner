@@ -31,9 +31,9 @@ export const TodoList = ({
   const completedCount = todos.filter((t) => t.completed).length;
 
   return (
-    <section className="w-full max-w-2xl mx-auto bg-card rounded-2xl shadow-card p-6 animate-slide-up">
+    <section className="w-full max-w-2xl mx-auto bg-card rounded-xl shadow-card p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display text-2xl font-semibold">To-Do</h2>
+        <h2 className="font-title text-2xl text-primary">To-Do List</h2>
         {todos.length > 0 && (
           <span className="text-sm text-muted-foreground">
             {completedCount}/{todos.length} done
@@ -46,7 +46,7 @@ export const TodoList = ({
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a task..."
-          className="flex-1 h-11"
+          className="flex-1 h-11 font-handwritten text-lg"
         />
         <Button type="submit" size="icon" className="h-11 w-11" disabled={!newTodo.trim()}>
           <Plus className="h-5 w-5" />
@@ -54,7 +54,7 @@ export const TodoList = ({
       </form>
 
       {todos.length === 0 ? (
-        <p className="text-center text-muted-foreground py-8">
+        <p className="text-center text-muted-foreground py-8 font-handwritten text-lg">
           No tasks yet. Add one above!
         </p>
       ) : (
@@ -63,10 +63,9 @@ export const TodoList = ({
             <li
               key={todo.id}
               className={cn(
-                'flex items-center gap-3 p-3 rounded-lg bg-secondary/50 group animate-fade-in transition-all',
+                'flex items-center gap-3 p-3 rounded-lg bg-secondary/50 group transition-all',
                 todo.completed && 'opacity-60'
               )}
-              style={{ animationDelay: `${index * 50}ms` }}
             >
               <button
                 onClick={() => onToggleTodo(todo.id)}
@@ -81,7 +80,7 @@ export const TodoList = ({
               </button>
               <span
                 className={cn(
-                  'flex-1 text-sm transition-all',
+                  'flex-1 font-handwritten text-lg transition-all',
                   todo.completed && 'line-through text-muted-foreground'
                 )}
               >

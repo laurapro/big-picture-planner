@@ -2,52 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 45 30% 96%;
-    --foreground: 30 10% 15%;
+    --background: 210 50% 98%;
+    --foreground: 220 25% 20%;
 
-    --card: 45 40% 98%;
-    --card-foreground: 30 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 10% 15%;
+    --popover-foreground: 220 25% 20%;
 
-    --primary: 30 10% 15%;
-    --primary-foreground: 45 30% 96%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 20% 92%;
-    --secondary-foreground: 30 10% 15%;
+    --secondary: 210 30% 95%;
+    --secondary-foreground: 220 25% 20%;
 
-    --muted: 45 15% 90%;
-    --muted-foreground: 30 8% 45%;
+    --muted: 210 20% 92%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 45 25% 88%;
-    --accent-foreground: 30 10% 15%;
+    --accent: 210 40% 90%;
+    --accent-foreground: 220 25% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 15% 85%;
-    --input: 30 15% 85%;
-    --ring: 30 10% 15%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 100% 50%;
 
     --radius: 0.5rem;
 
-    /* Post-it colors */
-    --postit-yellow: 48 95% 76%;
-    --postit-pink: 340 82% 85%;
-    --postit-blue: 200 80% 82%;
-    --postit-green: 140 50% 78%;
-    --postit-orange: 28 90% 78%;
-    --postit-purple: 270 60% 85%;
+    /* Calendar grid colors */
+    --calendar-header: 210 100% 50%;
+    --calendar-weekend: 210 60% 94%;
+    --calendar-weekday: 210 40% 97%;
+    --calendar-grid-border: 210 30% 85%;
+
+    /* Post-it colors - vibrant like the reference */
+    --postit-yellow: 50 100% 65%;
+    --postit-pink: 340 90% 75%;
+    --postit-blue: 200 85% 70%;
+    --postit-green: 120 60% 65%;
+    --postit-orange: 25 100% 60%;
+    --postit-purple: 270 70% 70%;
+    --postit-red: 0 85% 60%;
 
     /* Shadows */
-    --shadow-postit: 0 2px 8px -2px hsl(30 10% 15% / 0.15);
-    --shadow-card: 0 4px 20px -4px hsl(30 10% 15% / 0.1);
-    --shadow-hover: 0 8px 30px -6px hsl(30 10% 15% / 0.2);
+    --shadow-postit: 0 2px 4px -1px hsl(220 25% 20% / 0.1);
+    --shadow-card: 0 4px 20px -4px hsl(220 25% 20% / 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -56,52 +62,6 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 30 10% 10%;
-    --foreground: 45 30% 96%;
-
-    --card: 30 10% 12%;
-    --card-foreground: 45 30% 96%;
-
-    --popover: 30 10% 12%;
-    --popover-foreground: 45 30% 96%;
-
-    --primary: 45 30% 96%;
-    --primary-foreground: 30 10% 10%;
-
-    --secondary: 30 10% 18%;
-    --secondary-foreground: 45 30% 96%;
-
-    --muted: 30 10% 20%;
-    --muted-foreground: 45 15% 60%;
-
-    --accent: 30 10% 22%;
-    --accent-foreground: 45 30% 96%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 30 10% 22%;
-    --input: 30 10% 22%;
-    --ring: 45 30% 80%;
-
-    --postit-yellow: 48 80% 45%;
-    --postit-pink: 340 60% 55%;
-    --postit-blue: 200 60% 50%;
-    --postit-green: 140 40% 45%;
-    --postit-orange: 28 70% 50%;
-    --postit-purple: 270 50% 55%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -116,8 +76,13 @@
     font-family: 'DM Sans', sans-serif;
   }
 
-  h1, h2, h3, .font-display {
-    font-family: 'Playfair Display', serif;
+  .font-title {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.02em;
+  }
+
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
   }
 }
 
@@ -139,5 +104,16 @@
   }
   .postit-purple {
     background-color: hsl(var(--postit-purple));
+  }
+  .postit-red {
+    background-color: hsl(var(--postit-red));
+  }
+
+  .calendar-weekend {
+    background-color: hsl(var(--calendar-weekend));
+  }
+
+  .calendar-weekday {
+    background-color: hsl(var(--calendar-weekday));
   }
 }
