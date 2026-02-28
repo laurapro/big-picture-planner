@@ -1,5 +1,5 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface CalendarHeaderProps {
   year: number;
@@ -7,7 +7,11 @@ interface CalendarHeaderProps {
   onNextYear: () => void;
 }
 
-export const CalendarHeader = ({ year, onPrevYear, onNextYear }: CalendarHeaderProps) => {
+export const CalendarHeader = ({
+  year,
+  onPrevYear,
+  onNextYear,
+}: CalendarHeaderProps) => {
   return (
     <header className="flex items-center justify-center gap-4 py-6 md:py-8">
       <Button
@@ -19,7 +23,7 @@ export const CalendarHeader = ({ year, onPrevYear, onNextYear }: CalendarHeaderP
         <ChevronLeft className="h-6 w-6" />
       </Button>
       <h1 className="font-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary tracking-wide select-none">
-        THE BIG A## CALENDAR {year}
+        WHAT ARE WE DOING {year}
       </h1>
       <Button
         variant="ghost"
