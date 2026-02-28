@@ -2,67 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 210 50% 98%;
-    --foreground: 220 25% 20%;
+    --background: 240 33% 98%;
+    --foreground: 240 15% 28%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 20%;
+    --card-foreground: 240 15% 28%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 20%;
+    --popover-foreground: 240 15% 28%;
 
-    --primary: 210 100% 50%;
+    --primary: 210 60% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 30% 95%;
-    --secondary-foreground: 220 25% 20%;
+    --secondary: 240 30% 94%;
+    --secondary-foreground: 240 15% 28%;
 
-    --muted: 210 20% 92%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 240 25% 92%;
+    --muted-foreground: 240 10% 48%;
 
-    --accent: 210 40% 90%;
-    --accent-foreground: 220 25% 20%;
+    --accent: 240 35% 92%;
+    --accent-foreground: 240 15% 28%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 240 40% 98%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 210 100% 50%;
+    --border: 240 25% 90%;
+    --input: 240 25% 90%;
+    --ring: 210 60% 55%;
 
     --radius: 0.5rem;
 
     /* Calendar grid colors */
-    --calendar-header: 210 100% 50%;
-    --calendar-weekend: 210 60% 94%;
-    --calendar-weekday: 210 40% 97%;
-    --calendar-grid-border: 210 30% 85%;
+    --calendar-header: 210 55% 60%;
+    --calendar-weekend: 240 40% 95%;
+    --calendar-weekday: 240 35% 97%;
+    --calendar-grid-border: 240 25% 88%;
 
-    /* Post-it colors - vibrant like the reference */
-    --postit-yellow: 50 100% 65%;
-    --postit-pink: 340 90% 75%;
-    --postit-blue: 200 85% 70%;
-    --postit-green: 120 60% 65%;
-    --postit-orange: 25 100% 60%;
-    --postit-purple: 270 70% 70%;
-    --postit-red: 0 85% 60%;
+    /* Post-it colors - pastel */
+    --postit-yellow: 48 70% 82%;
+    --postit-pink: 340 60% 85%;
+    --postit-blue: 200 55% 82%;
+    --postit-green: 120 35% 80%;
+    --postit-orange: 28 70% 78%;
+    --postit-purple: 270 45% 82%;
+    --postit-red: 0 55% 78%;
 
     /* Shadows */
-    --shadow-postit: 0 2px 4px -1px hsl(220 25% 20% / 0.1);
-    --shadow-card: 0 4px 20px -4px hsl(220 25% 20% / 0.15);
+    --shadow-postit: 0 2px 4px -1px hsl(220 20% 30% / 0.08);
+    --shadow-card: 0 4px 20px -4px hsl(220 20% 30% / 0.1);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 240 30% 98%;
+    --sidebar-foreground: 240 10% 30%;
+    --sidebar-primary: 240 15% 20%;
+    --sidebar-primary-foreground: 240 30% 98%;
+    --sidebar-accent: 240 25% 94%;
+    --sidebar-accent-foreground: 240 15% 20%;
+    --sidebar-border: 240 20% 90%;
+    --sidebar-ring: 210 60% 55%;
   }
 }
 
@@ -73,16 +73,17 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
 
   .font-title {
-    font-family: 'Bangers', cursive;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     letter-spacing: 0.02em;
   }
 
   .font-handwritten {
-    font-family: 'Caveat', cursive;
+    font-family: 'Nunito', sans-serif;
   }
 }
 

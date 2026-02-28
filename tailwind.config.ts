@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['DM Sans', 'sans-serif'],
-        title: ['Bangers', 'cursive'],
-        handwritten: ['Caveat', 'cursive'],
+        sans: ['Nunito', 'sans-serif'],
+        title: ['Nunito', 'sans-serif'],
+        handwritten: ['Nunito', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
