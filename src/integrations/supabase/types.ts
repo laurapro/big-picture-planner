@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      calendar_events: {
+        Row: {
+          color: string
+          created_at: string
+          end_date: string
+          id: string
+          start_date: string
+          title: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          end_date: string
+          id?: string
+          start_date: string
+          title: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          end_date?: string
+          id?: string
+          start_date?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      todo_items: {
+        Row: {
+          completed: boolean
+          created_at: string
+          id: string
+          text: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          text: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          text?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
