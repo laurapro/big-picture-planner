@@ -1,53 +1,49 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { TodoItem } from '@/types/calendar';
-
-const STORAGE_KEY = 'big-ass-calendar-todos';
-
-const loadTodos = (): TodoItem[] => {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveTodos = (todos: TodoItem[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-};
+import { supabase } from '@/integrations/supabase/client';
 
 export const useTodoList = () => {
-  const [todos, setTodos] = useState<TodoItem[]>(loadTodos);
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
-  const addTodo = useCallback((text: string) => {
-    const newTodo: TodoItem = {
-      id: crypto.randomUUID(),
-      text,
-      completed: false,
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const { data, error } = await supabase
+        .from('todo_items')
+        .select('*')
+        .order('created_at', { ascending: true });
+      if (!error && data) {
+        setTodos(data.map((t: any) => ({
+          id: t.id,
+          text: t.text,
+          completed: t.completed,
+        })));
+      }
     };
-    setTodos((prev) => {
-      const updated = [...prev, newTodo];
-      saveTodos(updated);
-      return updated;
-    });
+    fetchTodos();
+
+    const channel = supabase
+      .channel('todo_items_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'todo_items' }, () => {
+        fetchTodos();
+      })
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
   }, []);
 
-  const toggleTodo = useCallback((id: string) => {
-    setTodos((prev) => {
-      const updated = prev.map((t) =>
-        t.id === id ? { ...t, completed: !t.completed } : t
-      );
-      saveTodos(updated);
-      return updated;
-    });
+  const addTodo = useCallback(async (text: string) => {
+    await supabase.from('todo_items').insert({ text });
   }, []);
 
-  const removeTodo = useCallback((id: string) => {
-    setTodos((prev) => {
-      const updated = prev.filter((t) => t.id !== id);
-      saveTodos(updated);
-      return updated;
-    });
+  const toggleTodo = useCallback(async (id: string) => {
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+      await supabase.from('todo_items').update({ completed: !todo.completed }).eq('id', id);
+    }
+  }, [todos]);
+
+  const removeTodo = useCallback(async (id: string) => {
+    await supabase.from('todo_items').delete().eq('id', id);
   }, []);
 
   return { todos, addTodo, toggleTodo, removeTodo };
