@@ -7,6 +7,7 @@ interface HorizontalCalendarGridProps {
   year: number;
   events: CalendarEvent[];
   onCellClick: (date: string, month: number, day: number) => void;
+  onEventClick?: (event: CalendarEvent) => void;
 }
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
