@@ -107,12 +107,12 @@ export const AddEventDialog = ({
                 <div
                   key={event.id}
                   className={cn(
-                    'flex items-center justify-between p-3 rounded-lg shadow-sm text-foreground/90',
+                    'flex items-center justify-between p-3 rounded-lg shadow-sm text-foreground/90 group',
                     colorClasses[event.color],
                     event.color === 'black' && 'text-white'
                   )}
                 >
-                  <span className="font-handwritten text-lg font-bold">
+                  <span className="font-handwritten text-lg font-bold truncate group-hover:overflow-visible group-hover:whitespace-normal">
                     {event.title}
                   </span>
                   <Button
