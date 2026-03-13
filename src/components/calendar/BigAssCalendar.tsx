@@ -2,22 +2,31 @@ import { useState, useMemo } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { HorizontalCalendarGrid } from './HorizontalCalendarGrid';
 import { AddEventDialog } from './AddEventDialog';
+import { EditEventDialog } from './EditEventDialog';
 import { TodoList } from './TodoList';
 import { ColorLegend } from './ColorLegend';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 import { useTodoList } from '@/hooks/useTodoList';
+import { CalendarEvent } from '@/types/calendar';
 
 export const BigAssCalendar = () => {
   const [year, setYear] = useState(() => new Date().getFullYear());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
 
-  const { events, addEvent, removeEvent } = useCalendarEvents();
+  const { events, addEvent, removeEvent, updateEvent } = useCalendarEvents();
   const { todos, addTodo, toggleTodo, removeTodo } = useTodoList();
 
   const handleCellClick = (date: string) => {
     setSelectedDate(date);
     setDialogOpen(true);
+  };
+
+  const handleEventClick = (event: CalendarEvent) => {
+    setEditingEvent(event);
+    setEditDialogOpen(true);
   };
 
   const yearEvents = useMemo(() => {
@@ -49,6 +58,7 @@ export const BigAssCalendar = () => {
             year={year}
             events={yearEvents}
             onCellClick={handleCellClick}
+            onEventClick={handleEventClick}
           />
         </div>
 
@@ -68,6 +78,14 @@ export const BigAssCalendar = () => {
         selectedDate={selectedDate}
         existingEvents={existingEventsForSelected}
         onAddEvent={addEvent}
+        onRemoveEvent={removeEvent}
+      />
+
+      <EditEventDialog
+        open={editDialogOpen}
+        onOpenChange={setEditDialogOpen}
+        event={editingEvent}
+        onUpdateEvent={updateEvent}
         onRemoveEvent={removeEvent}
       />
     </div>
