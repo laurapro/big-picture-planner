@@ -31,7 +31,7 @@ interface EventBlock {
   row: number;
 }
 
-export const HorizontalCalendarGrid = ({ year, events, onCellClick }: HorizontalCalendarGridProps) => {
+export const HorizontalCalendarGrid = ({ year, events, onCellClick, onEventClick }: HorizontalCalendarGridProps) => {
   // Calculate which events span which cells for each month
   const eventsByMonth = useMemo(() => {
     const result: Map<number, EventBlock[]> = new Map();
