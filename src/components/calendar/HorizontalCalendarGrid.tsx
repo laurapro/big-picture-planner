@@ -136,7 +136,7 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick }: Horizontal
                       onClick={() => valid && onCellClick(formatDateStr(monthIndex, day), monthIndex, day)}
                       className={cn(
                         'flex-1 min-w-[28px] border-r border-calendar-border relative',
-                        valid ? 'cursor-pointer hover:bg-primary/5' : 'bg-muted/30',
+                        valid ? 'cursor-pointer hover:bg-primary/5' : 'bg-muted/60 day-invalid',
                         weekend && valid && 'bg-calendar-weekend',
                         !weekend && valid && 'bg-calendar-weekday',
                         today && 'ring-2 ring-inset ring-primary'

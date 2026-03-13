@@ -117,4 +117,14 @@
   .calendar-weekday {
     background-color: hsl(var(--calendar-weekday));
   }
+
+  .day-invalid {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      hsl(var(--muted-foreground) / 0.08) 4px,
+      hsl(var(--muted-foreground) / 0.08) 5px
+    );
+  }
 }
