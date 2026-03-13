@@ -107,11 +107,12 @@ export const AddEventDialog = ({
                 <div
                   key={event.id}
                   className={cn(
-                    'flex items-center justify-between p-3 rounded-lg shadow-sm',
-                    colorClasses[event.color]
+                    'flex items-center justify-between p-3 rounded-lg shadow-sm text-foreground/90',
+                    colorClasses[event.color],
+                    event.color === 'black' && 'text-white'
                   )}
                 >
-                  <span className="font-handwritten text-lg font-bold text-foreground/90">
+                  <span className="font-handwritten text-lg font-bold">
                     {event.title}
                   </span>
                   <Button

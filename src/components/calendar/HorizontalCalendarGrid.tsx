@@ -157,8 +157,9 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick, onEventClick
                       <div
                         key={`${block.event.id}-${idx}`}
                         className={cn(
-                          'absolute pointer-events-auto cursor-pointer rounded-sm px-1 flex items-center overflow-hidden shadow-sm transition-all duration-150 hover:z-30 hover:min-w-fit hover:overflow-visible hover:shadow-md group',
-                          colorClasses[block.event.color]
+                          'absolute pointer-events-auto cursor-pointer rounded-sm px-1 flex items-center overflow-hidden shadow-sm transition-all duration-150 hover:z-30 hover:min-w-fit hover:overflow-visible hover:shadow-md group text-foreground/90',
+                          colorClasses[block.event.color],
+                          block.event.color === 'black' && 'text-white'
                         )}
                         style={{
                           left: `${leftPercent}%`,
@@ -172,7 +173,7 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick, onEventClick
                           onEventClick?.(block.event);
                         }}
                       >
-                        <span className="text-xs md:text-sm font-semibold text-foreground/90 truncate whitespace-nowrap group-hover:overflow-visible group-hover:bg-inherit group-hover:pr-2 group-hover:rounded-sm">
+                        <span className="text-xs md:text-sm font-semibold truncate whitespace-nowrap group-hover:overflow-visible group-hover:bg-inherit group-hover:pr-2 group-hover:rounded-sm">
                           {block.event.title}
                         </span>
                       </div>

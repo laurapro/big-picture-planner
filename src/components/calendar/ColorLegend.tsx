@@ -12,7 +12,7 @@ const DEFAULT_LEGEND: LegendItem[] = [
   { colorClassName: "bg-postit-purple", label: "Travels" },
   { colorClassName: "bg-postit-black", label: "Búho" },
   // { colorClassName: 'bg-postit-red', label: 'Red' },
-  // { colorClassName: 'bg-postit-orange', label: 'Orange' },
+  { colorClassName: "bg-postit-orange", label: "Concerts" },
   { colorClassName: "bg-postit-yellow", label: "Dogs/Animals" },
 ];
 
