@@ -6,14 +6,14 @@ type LegendItem = {
 };
 
 const DEFAULT_LEGEND: LegendItem[] = [
-  { colorClassName: "bg-postit-blue", label: "Andy 🙎🏻‍♂️" },
-  { colorClassName: "bg-postit-pink", label: "Laura 💋" },
-  { colorClassName: "bg-postit-green", label: "Martin 👶🏼" },
-  { colorClassName: "bg-postit-purple", label: "Travels ✈️" },
-  { colorClassName: "bg-postit-black", label: "Búho 🐈‍⬛" },
-  // { colorClassName: 'bg-postit-red', label: 'Red' },
-  { colorClassName: "bg-postit-orange", label: "Concerts 🥁" },
-  // { colorClassName: "bg-postit-yellow", label: "Dogs/Animals 🐶" },
+  { colorClassName: "bg-postit-blue", label: "🙎🏻‍♂️ Andy" },
+  { colorClassName: "bg-postit-pink", label: "💋 Laura" },
+  { colorClassName: "bg-postit-green", label: "👶🏼 Martin" },
+  { colorClassName: "bg-postit-purple", label: "✈️ Travels" },
+  { colorClassName: "bg-postit-black", label: "🐈‍⬛ Búho" },
+  // { colorClassName: 'bg-postit-red', label: '❤️ Red' },
+  { colorClassName: "bg-postit-orange", label: "🥁 Concerts" },
+  // { colorClassName: "bg-postit-yellow", label: "🐶 Dogs/Animals" },
 ];
 
 export function ColorLegend({

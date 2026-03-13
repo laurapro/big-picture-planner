@@ -33,14 +33,14 @@ interface AddEventDialogProps {
 }
 
 const COLORS: { value: PostItColor; className: string; label: string }[] = [
-  { value: "blue", className: "bg-postit-blue", label: "Andy 🙎🏻‍♂️" },
-  { value: "pink", className: "bg-postit-pink", label: "Laura 💋" },
-  { value: "green", className: "bg-postit-green", label: "Martin 👶🏼" },
-  { value: "purple", className: "bg-postit-purple", label: "Travels ✈️" },
-  { value: "black", className: "bg-postit-black", label: "Búho 🐈‍⬛" },
-  // { value: "red", className: "bg-postit-red", label: "Red" },
-  { value: "orange", className: "bg-postit-orange", label: "Concerts 🥁" },
-  // { value: "yellow", className: "bg-postit-yellow", label: "Dogs/Animals 🐶" },
+  { value: "blue", className: "bg-postit-blue", label: "🙎🏻‍♂️ Andy" },
+  { value: "pink", className: "bg-postit-pink", label: "💋 Laura" },
+  { value: "green", className: "bg-postit-green", label: "👶🏼 Martin" },
+  { value: "purple", className: "bg-postit-purple", label: "✈️ Travels" },
+  { value: "black", className: "bg-postit-black", label: "🐈‍⬛ Búho" },
+  // { value: "red", className: "bg-postit-red", label: "❤️ Red" },
+  { value: "orange", className: "bg-postit-orange", label: "🥁 Concerts" },
+  // { value: "yellow", className: "bg-postit-yellow", label: "🐶 Dogs/Animals" },
 ];
 
 const colorClasses: Record<PostItColor, string> = {
