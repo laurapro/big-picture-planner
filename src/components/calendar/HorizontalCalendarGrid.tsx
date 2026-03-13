@@ -7,6 +7,7 @@ interface HorizontalCalendarGridProps {
   year: number;
   events: CalendarEvent[];
   onCellClick: (date: string, month: number, day: number) => void;
+  onEventClick?: (event: CalendarEvent) => void;
 }
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -30,7 +31,7 @@ interface EventBlock {
   row: number;
 }
 
-export const HorizontalCalendarGrid = ({ year, events, onCellClick }: HorizontalCalendarGridProps) => {
+export const HorizontalCalendarGrid = ({ year, events, onCellClick, onEventClick }: HorizontalCalendarGridProps) => {
   // Calculate which events span which cells for each month
   const eventsByMonth = useMemo(() => {
     const result: Map<number, EventBlock[]> = new Map();
@@ -166,6 +167,10 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick }: Horizontal
                           height: '20px',
                         }}
                         title={block.event.title}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEventClick?.(block.event);
+                        }}
                       >
                         <span className="text-xs md:text-sm font-semibold text-foreground/90 truncate whitespace-nowrap">
                           {block.event.title}
