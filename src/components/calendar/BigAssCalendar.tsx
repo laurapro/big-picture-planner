@@ -3,6 +3,7 @@ import { CalendarHeader } from './CalendarHeader';
 import { HorizontalCalendarGrid } from './HorizontalCalendarGrid';
 import { AddEventDialog } from './AddEventDialog';
 import { TodoList } from './TodoList';
+import { ColorLegend } from './ColorLegend';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 import { useTodoList } from '@/hooks/useTodoList';
 
@@ -58,6 +59,8 @@ export const BigAssCalendar = () => {
           onRemoveTodo={removeTodo}
         />
       </div>
+
+      <ColorLegend className="mt-8" />
 
       <AddEventDialog
         open={dialogOpen}

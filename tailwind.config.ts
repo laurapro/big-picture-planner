@@ -60,6 +60,7 @@ export default {
           orange: "hsl(var(--postit-orange))",
           purple: "hsl(var(--postit-purple))",
           red: "hsl(var(--postit-red))",
+          black: "hsl(var(--postit-black))",
         },
         calendar: {
           header: "hsl(var(--calendar-header))",

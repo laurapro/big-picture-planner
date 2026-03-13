@@ -20,6 +20,7 @@ const colorClasses: Record<PostItColor, string> = {
   orange: 'bg-postit-orange',
   purple: 'bg-postit-purple',
   red: 'bg-postit-red',
+  black: 'bg-postit-black',
 };
 
 interface EventBlock {

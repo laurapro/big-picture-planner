@@ -50,6 +50,7 @@
     --postit-orange: 28 70% 78%;
     --postit-purple: 270 45% 82%;
     --postit-red: 0 55% 78%;
+    --postit-black: 240 12% 30%;
 
     /* Shadows */
     --shadow-postit: 0 2px 4px -1px hsl(220 20% 30% / 0.08);
@@ -108,6 +109,9 @@
   }
   .postit-red {
     background-color: hsl(var(--postit-red));
+  }
+  .postit-black {
+    background-color: hsl(var(--postit-black));
   }
 
   .calendar-weekend {

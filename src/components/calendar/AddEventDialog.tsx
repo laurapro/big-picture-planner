@@ -28,6 +28,7 @@ interface AddEventDialogProps {
 }
 
 const COLORS: { value: PostItColor; className: string; label: string }[] = [
+  { value: 'black', className: 'bg-postit-black', label: 'Black' },
   { value: 'red', className: 'bg-postit-red', label: 'Red' },
   { value: 'orange', className: 'bg-postit-orange', label: 'Orange' },
   { value: 'yellow', className: 'bg-postit-yellow', label: 'Yellow' },
@@ -45,6 +46,7 @@ const colorClasses: Record<PostItColor, string> = {
   orange: 'bg-postit-orange',
   purple: 'bg-postit-purple',
   red: 'bg-postit-red',
+  black: 'bg-postit-black',
 };
 
 export const AddEventDialog = ({

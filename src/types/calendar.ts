@@ -1,4 +1,4 @@
-export type PostItColor = 'yellow' | 'pink' | 'blue' | 'green' | 'orange' | 'purple' | 'red';
+export type PostItColor = 'yellow' | 'pink' | 'blue' | 'green' | 'orange' | 'purple' | 'red' | 'black';
 
 export interface CalendarEvent {
   id: string;
