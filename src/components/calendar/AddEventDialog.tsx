@@ -1,52 +1,57 @@
-import { useState, useEffect } from 'react';
-import { format, parseISO, isBefore, isAfter, startOfDay } from 'date-fns';
-import { X, Calendar as CalendarIcon } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { format, parseISO, isBefore, isAfter, startOfDay } from "date-fns";
+import { X, Calendar as CalendarIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Calendar } from '@/components/ui/calendar';
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { PostItColor, CalendarEvent } from '@/types/calendar';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/popover";
+import { PostItColor, CalendarEvent } from "@/types/calendar";
+import { cn } from "@/lib/utils";
 
 interface AddEventDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   selectedDate: string | null;
   existingEvents: CalendarEvent[];
-  onAddEvent: (startDate: string, endDate: string, title: string, color: PostItColor) => void;
+  onAddEvent: (
+    startDate: string,
+    endDate: string,
+    title: string,
+    color: PostItColor,
+  ) => void;
   onRemoveEvent: (id: string) => void;
 }
 
 const COLORS: { value: PostItColor; className: string; label: string }[] = [
-  { value: 'black', className: 'bg-postit-black', label: 'Black' },
-  { value: 'red', className: 'bg-postit-red', label: 'Red' },
-  { value: 'orange', className: 'bg-postit-orange', label: 'Orange' },
-  { value: 'yellow', className: 'bg-postit-yellow', label: 'Yellow' },
-  { value: 'green', className: 'bg-postit-green', label: 'Green' },
-  { value: 'blue', className: 'bg-postit-blue', label: 'Blue' },
-  { value: 'purple', className: 'bg-postit-purple', label: 'Purple' },
-  { value: 'pink', className: 'bg-postit-pink', label: 'Pink' },
+  { value: "blue", className: "bg-postit-blue", label: "Andy 🙎🏻‍♂️" },
+  { value: "pink", className: "bg-postit-pink", label: "Laura 💋" },
+  { value: "green", className: "bg-postit-green", label: "Martin 👶🏼" },
+  { value: "purple", className: "bg-postit-purple", label: "Travels ✈️" },
+  { value: "black", className: "bg-postit-black", label: "Búho 🐈‍⬛" },
+  // { value: "red", className: "bg-postit-red", label: "Red" },
+  { value: "orange", className: "bg-postit-orange", label: "Concerts 🥁" },
+  // { value: "yellow", className: "bg-postit-yellow", label: "Dogs/Animals 🐶" },
 ];
 
 const colorClasses: Record<PostItColor, string> = {
-  yellow: 'bg-postit-yellow',
-  pink: 'bg-postit-pink',
-  blue: 'bg-postit-blue',
-  green: 'bg-postit-green',
-  orange: 'bg-postit-orange',
-  purple: 'bg-postit-purple',
-  red: 'bg-postit-red',
-  black: 'bg-postit-black',
+  yellow: "bg-postit-yellow",
+  pink: "bg-postit-pink",
+  blue: "bg-postit-blue",
+  green: "bg-postit-green",
+  orange: "bg-postit-orange",
+  purple: "bg-postit-purple",
+  red: "bg-postit-red",
+  black: "bg-postit-black",
 };
 
 export const AddEventDialog = ({
@@ -57,8 +62,8 @@ export const AddEventDialog = ({
   onAddEvent,
   onRemoveEvent,
 }: AddEventDialogProps) => {
-  const [title, setTitle] = useState('');
-  const [color, setColor] = useState<PostItColor>('orange');
+  const [title, setTitle] = useState("");
+  const [color, setColor] = useState<PostItColor>("orange");
   const [startDate, setStartDate] = useState<Date | undefined>();
   const [endDate, setEndDate] = useState<Date | undefined>();
 
@@ -71,23 +76,23 @@ export const AddEventDialog = ({
   }, [selectedDate]);
 
   const formattedDate = selectedDate
-    ? format(parseISO(selectedDate), 'EEEE, MMMM d, yyyy')
-    : '';
+    ? format(parseISO(selectedDate), "EEEE, MMMM d, yyyy")
+    : "";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim() && startDate && endDate) {
-      const start = format(startDate, 'yyyy-MM-dd');
-      const end = format(endDate, 'yyyy-MM-dd');
+      const start = format(startDate, "yyyy-MM-dd");
+      const end = format(endDate, "yyyy-MM-dd");
       onAddEvent(start, end, title.trim(), color);
-      setTitle('');
-      setColor('orange');
+      setTitle("");
+      setColor("orange");
     }
   };
 
   const handleClose = () => {
-    setTitle('');
-    setColor('orange');
+    setTitle("");
+    setColor("orange");
     onOpenChange(false);
   };
 
@@ -95,21 +100,25 @@ export const AddEventDialog = ({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-title text-2xl text-primary">{formattedDate}</DialogTitle>
+          <DialogTitle className="font-title text-2xl text-primary">
+            {formattedDate}
+          </DialogTitle>
         </DialogHeader>
 
         {/* Existing events */}
         {existingEvents.length > 0 && (
           <div className="space-y-2 mb-4">
-            <p className="text-sm font-medium text-muted-foreground">Events on this day</p>
+            <p className="text-sm font-medium text-muted-foreground">
+              Events on this day
+            </p>
             <div className="space-y-2">
               {existingEvents.map((event) => (
                 <div
                   key={event.id}
                   className={cn(
-                    'flex items-center justify-between p-3 rounded-lg shadow-sm text-foreground/90 group',
+                    "flex items-center justify-between p-3 rounded-lg shadow-sm text-foreground/90 group",
                     colorClasses[event.color],
-                    event.color === 'black' && 'text-white'
+                    event.color === "black" && "text-white",
                   )}
                 >
                   <span className="font-handwritten text-lg font-bold truncate group-hover:overflow-visible group-hover:whitespace-normal">
@@ -147,9 +156,12 @@ export const AddEventDialog = ({
               <p className="text-xs text-muted-foreground mb-1">Start</p>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" className="w-full justify-start text-left font-normal h-10">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal h-10"
+                  >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {startDate ? format(startDate, 'MMM d') : 'Pick date'}
+                    {startDate ? format(startDate, "MMM d") : "Pick date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -158,7 +170,11 @@ export const AddEventDialog = ({
                     selected={startDate}
                     onSelect={(date) => {
                       setStartDate(date);
-                      if (date && endDate && isAfter(startOfDay(date), startOfDay(endDate))) {
+                      if (
+                        date &&
+                        endDate &&
+                        isAfter(startOfDay(date), startOfDay(endDate))
+                      ) {
                         setEndDate(date);
                       }
                     }}
@@ -172,9 +188,12 @@ export const AddEventDialog = ({
               <p className="text-xs text-muted-foreground mb-1">End</p>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" className="w-full justify-start text-left font-normal h-10">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal h-10"
+                  >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, 'MMM d') : 'Pick date'}
+                    {endDate ? format(endDate, "MMM d") : "Pick date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -182,13 +201,21 @@ export const AddEventDialog = ({
                     mode="single"
                     selected={endDate}
                     onSelect={(date) => {
-                      if (date && startDate && isBefore(startOfDay(date), startOfDay(startDate))) {
+                      if (
+                        date &&
+                        startDate &&
+                        isBefore(startOfDay(date), startOfDay(startDate))
+                      ) {
                         setEndDate(startDate);
                       } else {
                         setEndDate(date);
                       }
                     }}
-                    disabled={(date) => startDate ? isBefore(startOfDay(date), startOfDay(startDate)) : false}
+                    disabled={(date) =>
+                      startDate
+                        ? isBefore(startOfDay(date), startOfDay(startDate))
+                        : false
+                    }
                     initialFocus
                   />
                 </PopoverContent>
@@ -198,7 +225,9 @@ export const AddEventDialog = ({
 
           {/* Color picker */}
           <div>
-            <p className="text-sm font-medium text-muted-foreground mb-2">Color</p>
+            <p className="text-sm font-medium text-muted-foreground mb-2">
+              Color
+            </p>
             <div className="flex gap-2 flex-wrap">
               {COLORS.map((c) => (
                 <button
@@ -206,9 +235,10 @@ export const AddEventDialog = ({
                   type="button"
                   onClick={() => setColor(c.value)}
                   className={cn(
-                    'w-8 h-8 rounded-full transition-all shadow-sm',
+                    "w-8 h-8 rounded-full transition-all shadow-sm",
                     c.className,
-                    color === c.value && 'ring-2 ring-offset-2 ring-foreground scale-110'
+                    color === c.value &&
+                      "ring-2 ring-offset-2 ring-foreground scale-110",
                   )}
                   title={c.label}
                 />
@@ -216,7 +246,11 @@ export const AddEventDialog = ({
             </div>
           </div>
 
-          <Button type="submit" className="w-full h-11 font-title text-lg" disabled={!title.trim() || !startDate || !endDate}>
+          <Button
+            type="submit"
+            className="w-full h-11 font-title text-lg"
+            disabled={!title.trim() || !startDate || !endDate}
+          >
             Add Event
           </Button>
         </form>
