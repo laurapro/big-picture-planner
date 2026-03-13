@@ -167,6 +167,10 @@ export const HorizontalCalendarGrid = ({ year, events, onCellClick, onEventClick
                           height: '20px',
                         }}
                         title={block.event.title}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEventClick?.(block.event);
+                        }}
                       >
                         <span className="text-xs md:text-sm font-semibold text-foreground/90 truncate whitespace-nowrap">
                           {block.event.title}
