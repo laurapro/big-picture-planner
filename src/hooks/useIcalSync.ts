@@ -131,7 +131,7 @@ function withinSyncWindow(startDate: string) {
 export function useIcalSync() {
   const [isSyncing, setIsSyncing] = useState(false);
   const icalUrl = useMemo(
-    () => import.meta.env.VITE_ICAL_URL as string | undefined,
+    () => (import.meta.env.VITE_ICAL_URL as string | undefined) ?? "https://p50-caldav.icloud.com/published/2/MTMwMzIyMDE2MTEzMDMyMv2OiK7h7jvGkRJ7g62AHkO9DvizN60lVjnmPQAVtvJVxExQxBVVOS5NLeFf3HIHkxbNgDjV_DugOZiJrSGBijg",
     []
   );
 
@@ -153,15 +153,15 @@ export function useIcalSync() {
         withinSyncWindow(event.startDate)
       );
 
-      const { data: existing, error: fetchError } = await supabase
+      const { data: existing, error: fetchError } = await (supabase
         .from("calendar_events")
-        .select("id, external_uid")
-        .eq("source", SYNC_SOURCE);
+        .select("id, external_uid, source")
+        .eq("source", SYNC_SOURCE) as any);
 
       if (fetchError) throw fetchError;
 
       const existingByUid = new Map(
-        (existing ?? []).map((row) => [row.external_uid, row])
+        ((existing as any[]) ?? []).map((row: any) => [row.external_uid, row])
       );
       const seenUids = new Set<string>();
       let inserted = 0;
