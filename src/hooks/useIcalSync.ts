@@ -155,13 +155,13 @@ export function useIcalSync() {
 
       const { data: existing, error: fetchError } = await supabase
         .from("calendar_events")
-        .select("id, external_uid")
-        .eq("source", SYNC_SOURCE);
+        .select("id, external_uid, source")
+        .eq("source" as any, SYNC_SOURCE) as any;
 
       if (fetchError) throw fetchError;
 
       const existingByUid = new Map(
-        (existing ?? []).map((row) => [row.external_uid, row])
+        ((existing as any[]) ?? []).map((row: any) => [row.external_uid, row])
       );
       const seenUids = new Set<string>();
       let inserted = 0;
