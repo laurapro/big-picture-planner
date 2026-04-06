@@ -153,10 +153,10 @@ export function useIcalSync() {
         withinSyncWindow(event.startDate)
       );
 
-      const { data: existing, error: fetchError } = await supabase
+      const { data: existing, error: fetchError } = await (supabase
         .from("calendar_events")
         .select("id, external_uid, source")
-        .eq("source" as any, SYNC_SOURCE) as any;
+        .eq("source", SYNC_SOURCE) as any);
 
       if (fetchError) throw fetchError;
 
