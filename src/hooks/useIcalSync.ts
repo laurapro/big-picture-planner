@@ -143,12 +143,13 @@ export function useIcalSync() {
 
     setIsSyncing(true);
     try {
-      const res = await fetch(icalUrl);
-      if (!res.ok) {
-        throw new Error(`Unable to fetch iCal feed (${res.status})`);
-      }
+      const { data: fnData, error: fnError } = await supabase.functions.invoke("fetch-ical", {
+        body: { url: icalUrl },
+      });
+      if (fnError) throw new Error(fnError.message ?? "Edge function error");
+      if (!fnData?.ics) throw new Error("No iCal data returned");
 
-      const icsText = await res.text();
+      const icsText = fnData.ics as string;
       const parsedEvents = parseEvents(icsText).filter((event) =>
         withinSyncWindow(event.startDate)
       );
