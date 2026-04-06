@@ -131,7 +131,7 @@ function withinSyncWindow(startDate: string) {
 export function useIcalSync() {
   const [isSyncing, setIsSyncing] = useState(false);
   const icalUrl = useMemo(
-    () => import.meta.env.VITE_ICAL_URL as string | undefined,
+    () => (import.meta.env.VITE_ICAL_URL as string | undefined) ?? "https://p50-caldav.icloud.com/published/2/MTMwMzIyMDE2MTEzMDMyMv2OiK7h7jvGkRJ7g62AHkO9DvizN60lVjnmPQAVtvJVxExQxBVVOS5NLeFf3HIHkxbNgDjV_DugOZiJrSGBijg",
     []
   );
 
