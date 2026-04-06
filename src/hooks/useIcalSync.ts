@@ -218,7 +218,7 @@ export function useIcalSync() {
     } finally {
       setIsSyncing(false);
     }
-  }, [icalUrl]);
+  }, []);
 
   return { syncNow, isSyncing };
 }
