@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -128,23 +128,21 @@ function withinSyncWindow(startDate: string) {
   return eventDate >= min && eventDate <= max;
 }
 
+const ICAL_URL = "https://p50-caldav.icloud.com/published/2/MTMwMzIyMDE2MTEzMDMyMv2OiK7h7jvGkRJ7g62AHkO9DvizN60lVjnmPQAVtvJVxExQxBVVOS5NLeFf3HIHkxbNgDjV_DugOZiJrSGBijg";
+
 export function useIcalSync() {
   const [isSyncing, setIsSyncing] = useState(false);
-  const icalUrl = useMemo(
-    () => (import.meta.env.VITE_ICAL_URL as string | undefined) ?? "https://p50-caldav.icloud.com/published/2/MTMwMzIyMDE2MTEzMDMyMv2OiK7h7jvGkRJ7g62AHkO9DvizN60lVjnmPQAVtvJVxExQxBVVOS5NLeFf3HIHkxbNgDjV_DugOZiJrSGBijg",
-    []
-  );
 
   const syncNow = useCallback(async () => {
-    if (!icalUrl) {
-      toast.error("Missing VITE_ICAL_URL in env");
+    if (!ICAL_URL) {
+      toast.error("No iCal URL configured");
       return;
     }
 
     setIsSyncing(true);
     try {
       const { data: fnData, error: fnError } = await supabase.functions.invoke("fetch-ical", {
-        body: { url: icalUrl },
+        body: { url: ICAL_URL },
       });
       if (fnError) throw new Error(fnError.message ?? "Edge function error");
       if (!fnData?.ics) throw new Error("No iCal data returned");
@@ -220,7 +218,7 @@ export function useIcalSync() {
     } finally {
       setIsSyncing(false);
     }
-  }, [icalUrl]);
+  }, []);
 
   return { syncNow, isSyncing };
 }
