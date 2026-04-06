@@ -171,24 +171,27 @@ export function useIcalSync() {
       for (const event of parsedEvents) {
         seenUids.add(event.uid);
         const existingRow = existingByUid.get(event.uid);
-        const payload = {
-          start_date: event.startDate,
-          end_date: event.endDate,
-          title: event.title,
-          color: DEFAULT_COLOR,
-          source: SYNC_SOURCE,
-          external_uid: event.uid,
-        };
-
         if (existingRow) {
+          // Only update dates, preserve user's color and title customizations
+          const updatePayload: Record<string, string> = {
+            start_date: event.startDate,
+            end_date: event.endDate,
+          };
           const { error } = await supabase
             .from("calendar_events")
-            .update(payload)
+            .update(updatePayload)
             .eq("id", existingRow.id);
           if (error) throw error;
           updated += 1;
         } else {
-          const { error } = await supabase.from("calendar_events").insert(payload);
+          const { error } = await supabase.from("calendar_events").insert({
+            start_date: event.startDate,
+            end_date: event.endDate,
+            title: event.title,
+            color: DEFAULT_COLOR,
+            source: SYNC_SOURCE,
+            external_uid: event.uid,
+          });
           if (error) throw error;
           inserted += 1;
         }
