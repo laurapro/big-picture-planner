@@ -142,7 +142,7 @@ export function useIcalSync() {
     setIsSyncing(true);
     try {
       const { data: fnData, error: fnError } = await supabase.functions.invoke("fetch-ical", {
-        body: { url: icalUrl },
+        body: { url: ICAL_URL },
       });
       if (fnError) throw new Error(fnError.message ?? "Edge function error");
       if (!fnData?.ics) throw new Error("No iCal data returned");
