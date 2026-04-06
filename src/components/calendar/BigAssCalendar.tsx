@@ -7,6 +7,7 @@ import { TodoList } from './TodoList';
 import { ColorLegend } from './ColorLegend';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 import { useTodoList } from '@/hooks/useTodoList';
+import { useIcalSync } from '@/hooks/useIcalSync';
 import { CalendarEvent } from '@/types/calendar';
 
 export const BigAssCalendar = () => {
@@ -18,6 +19,7 @@ export const BigAssCalendar = () => {
 
   const { events, addEvent, removeEvent, updateEvent } = useCalendarEvents();
   const { todos, addTodo, toggleTodo, removeTodo } = useTodoList();
+  const { syncNow, isSyncing } = useIcalSync();
 
   const handleCellClick = (date: string) => {
     setSelectedDate(date);
@@ -50,6 +52,8 @@ export const BigAssCalendar = () => {
         year={year}
         onPrevYear={() => setYear((y) => y - 1)}
         onNextYear={() => setYear((y) => y + 1)}
+        onSyncIcal={syncNow}
+        isSyncing={isSyncing}
       />
 
       <div className="max-w-[1600px] mx-auto">

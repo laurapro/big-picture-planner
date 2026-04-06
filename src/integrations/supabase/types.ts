@@ -19,7 +19,9 @@ export type Database = {
           color: string
           created_at: string
           end_date: string
+          external_uid: string | null
           id: string
+          source: string | null
           start_date: string
           title: string
         }
@@ -27,7 +29,9 @@ export type Database = {
           color?: string
           created_at?: string
           end_date: string
+          external_uid?: string | null
           id?: string
+          source?: string | null
           start_date: string
           title: string
         }
@@ -35,7 +39,9 @@ export type Database = {
           color?: string
           created_at?: string
           end_date?: string
+          external_uid?: string | null
           id?: string
+          source?: string | null
           start_date?: string
           title?: string
         }
